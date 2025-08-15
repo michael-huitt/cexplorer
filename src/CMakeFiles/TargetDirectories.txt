@@ -1,0 +1,3 @@
+/home/michael/Projects/cexplorer/src/CMakeFiles/cexplorer.dir
+/home/michael/Projects/cexplorer/src/CMakeFiles/edit_cache.dir
+/home/michael/Projects/cexplorer/src/CMakeFiles/rebuild_cache.dir
