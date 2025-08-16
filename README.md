@@ -2,7 +2,7 @@ CEXPLORER - A TUI based file browser using ncurses
 ==================================================
 !! Work in progress !!
 
-Installation
+Installation / Requirements
 ------------
   - Linux
   - Ncurses (Most linux distributions include ncurses by default,
