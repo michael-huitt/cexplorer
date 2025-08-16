@@ -14,7 +14,7 @@ How to build
   - On bash:
   ```
 git clone https://github.com/michael-huitt/cexplorer.git
-cd repo/build
+cd cexplorer/build
 cmake ..
 make
 ```
