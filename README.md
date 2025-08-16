@@ -18,9 +18,6 @@ cd cexplorer/build
 cmake ..
 make
 ```
-  - Alternatively, run the latest build included within the build
-    directory
-
 Roadmap
 -------
   Current features:
