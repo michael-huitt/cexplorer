@@ -3,6 +3,22 @@
 #include <stdbool.h>
 #include <sys/stat.h>
 
+int rm(const char *file_path) {
+	struct stat statbuf;
+
+	if (stat(file_path, &statbuf) != 0) {
+		return 1;	
+	}
+	
+	else if (remove(file_path) != 0) {
+		return 1;	
+	}
+	
+	else {
+		return 0;	
+	}
+}
+
 bool is_file(const char *file_path) {
 	struct stat statbuf;
 

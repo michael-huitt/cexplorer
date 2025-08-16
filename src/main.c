@@ -24,7 +24,7 @@ void main(int argc, char *argv[]) {
 	
 	char *path = argv[1];	
 	char **arr = populate_entries(path);
-
+	
 	box(win, 0, 0);
 	wrefresh(win);
 	
