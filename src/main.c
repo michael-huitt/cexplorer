@@ -15,18 +15,21 @@
 
 
 void main(int argc, char *argv[]) {
+	char *path = argv[1];
+	char **arr = populate_entries(path);	
+	int x_max, y_max;
+
 	initscr();
 	cbreak();
 	noecho();
-	
-	WINDOW *win = newwin(WIN_HEIGHT, WIN_WIDTH, START_X, START_Y);
+
+	getmaxyx(stdscr, y_max, x_max);
+
+	WINDOW *main_win = newwin(y_max, x_max, START_X, START_Y);
 	refresh();	
 	
-	char *path = argv[1];	
-	char **arr = populate_entries(path);
-	
-	box(win, 0, 0);
-	wrefresh(win);
+	box(main_win, 0, 0);
+	wrefresh(main_win);
 	
 	getch();
 	
