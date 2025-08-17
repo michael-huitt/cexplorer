@@ -13,7 +13,12 @@
 
 
 void main(int argc, char *argv[]) {
-	char *path = argv[1];
+	char *path;
+	
+	if (argv[1] == NULL) {
+		path = "/";	
+	}	
+	
 	char **dir_arr = populate_entries(path);	
 	int x_max, y_max;
 	unsigned int num_files = 0;	
