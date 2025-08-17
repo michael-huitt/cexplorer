@@ -19,15 +19,15 @@ void main(int argc, char *argv[]) {
 		path = "/";	
 	}	
 	
-	char **dir_arr = populate_entries(path);	
+	//char **dir_arr = populate_entries(path);	
 	int x_max, y_max;
-	unsigned int num_files = 0;	
+	//unsigned int num_files = 0;	
 
-	alphabetize(dir_arr);
+	//alphabetize(dir_arr);
 
-	while (dir_arr[num_files] != NULL) {
+	/*while (dir_arr[num_files] != NULL) {
 		num_files++;	
-	}
+	}*/
 
 	initscr();
 	cbreak();
@@ -48,6 +48,15 @@ void main(int argc, char *argv[]) {
 	int highlighted_entry = 0;	
 	
 	while(quit_flag != true) {
+		char **dir_arr = populate_entries(path);	
+		int num_files = 0;	
+		
+		alphabetize(dir_arr);	
+		
+		while (dir_arr[num_files] != NULL) {
+			num_files++;	
+		}	
+		
 		for (int i = 0; i < num_files || i == y_max; i++) {
 			if (i == highlighted_entry) {
 				wattron(main_win, A_REVERSE);	
@@ -81,12 +90,19 @@ void main(int argc, char *argv[]) {
 			case ('q'):
 				quit_flag = true;
 				break;
-
+			
+			case (KEY_ENTER):
+				break;
+			
 			default:
 				break;	
+		
+		
+		free(dir_arr);
+
 		}	
 	}
 
-	free(dir_arr);	
+	//free(dir_arr);	
 	endwin();	
 }
