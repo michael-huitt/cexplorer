@@ -27,6 +27,7 @@ void main(int argc, char *argv[]) {
 	initscr();
 	cbreak();
 	noecho();
+	curs_set(0);	
 	getmaxyx(stdscr, y_max, x_max);
 
 	WINDOW *main_win = newwin(y_max, x_max, START_X, START_Y);
@@ -37,10 +38,11 @@ void main(int argc, char *argv[]) {
 
 	wrefresh(main_win);	
 	
+	bool quit_flag = false;	
 	int selection;	
 	int highlighted_entry = 0;	
 	
-	while(1) {
+	while(quit_flag != true) {
 		for (int i = 0; i < num_files || i == y_max; i++) {
 			if (i == highlighted_entry) {
 				wattron(main_win, A_REVERSE);	
@@ -55,18 +57,26 @@ void main(int argc, char *argv[]) {
 		switch(selection) {
 			case (KEY_UP):
 				highlighted_entry--;
+				
 				if (highlighted_entry < 0) {
 					highlighted_entry = 0;	
 				}	
+				
 				break;
 			
 			case (KEY_DOWN):
 				highlighted_entry++;
+				
 				if (highlighted_entry >= y_max || highlighted_entry > (num_files - 1)) {
 					highlighted_entry = (num_files - 1);	
 				}
+				
 				break;			
 	
+			case ('q'):
+				quit_flag = true;
+				break;
+
 			default:
 				break;	
 		}	
