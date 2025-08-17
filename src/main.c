@@ -34,7 +34,7 @@ void main(int argc, char *argv[]) {
 	keypad(main_win, true);	
 	refresh();	
 	
-	box(main_win, 0, 0);
+	box(main_win, START_X, START_Y);
 
 	wrefresh(main_win);	
 	
@@ -48,7 +48,7 @@ void main(int argc, char *argv[]) {
 				wattron(main_win, A_REVERSE);	
 			}	
 			
-			mvwprintw(main_win, START_Y + 1 + i, START_X +1, dir_arr[i]);	
+			mvwprintw(main_win, START_Y + 1 + i, START_X + 1, dir_arr[i]);	
 			wattroff(main_win, A_REVERSE);	
 		}	
 		
