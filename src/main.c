@@ -60,7 +60,7 @@ void main(int argc, char *argv[]) {
 			if (i == highlighted_entry) {
 				wattron(main_win, A_REVERSE);	
 			}	
-			
+			wclrtoeol(main_win);	
 			mvwprintw(main_win, START_Y + 1 + i, START_X + 1, dir_arr[i]);	
 			wattroff(main_win, A_REVERSE);	
 		}	
