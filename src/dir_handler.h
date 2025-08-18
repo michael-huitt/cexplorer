@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 #ifndef dir_handler
 #define dir_handler
 
@@ -19,6 +21,6 @@ char** alphabetize(char **arr);
 //command. Conventions like '..' are used to move up the file
 //hiearchy.
 
-char* cd(char *path, char *dir);
+void cd(char *path, char *dir, char *new_path, size_t buffer);
 
 #endif

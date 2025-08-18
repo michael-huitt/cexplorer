@@ -7,27 +7,26 @@
 #include <menu.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stddef.h>
 
 #define START_X 0
 #define START_Y 0
-
+#define PATH_BUFFER_SIZE 1024
 
 void main(int argc, char *argv[]) {
-	char *path;
+	char path[PATH_BUFFER_SIZE];
 	
 	if (argv[1] == NULL) {
-		path = "/";	
+		strncpy(path, "/", PATH_BUFFER_SIZE - 1);	
+		path[PATH_BUFFER_SIZE - 1] = '\0';	
+	}	
+		
+	else {
+		strncpy(path, argv[1], PATH_BUFFER_SIZE - 1);	
 	}	
 	
-	//char **dir_arr = populate_entries(path);	
+	char new_path[PATH_BUFFER_SIZE];	
 	int x_max, y_max;
-	//unsigned int num_files = 0;	
-
-	//alphabetize(dir_arr);
-
-	/*while (dir_arr[num_files] != NULL) {
-		num_files++;	
-	}*/
 
 	initscr();
 	cbreak();
@@ -91,16 +90,21 @@ void main(int argc, char *argv[]) {
 				quit_flag = true;
 				break;
 			
-			case (KEY_ENTER):
+			case (10):
+				cd(path, dir_arr[highlighted_entry], new_path, PATH_BUFFER_SIZE);	
+				strncpy(path, new_path, PATH_BUFFER_SIZE - 1);
+				path[PATH_BUFFER_SIZE - 1] = '\0';	
+				mvwprintw(main_win, START_Y, START_X, path);	
+				wrefresh(main_win);	
 				break;
 			
 			default:
 				break;	
 		
 		
-		free(dir_arr);
 
 		}	
+	free(dir_arr);	
 	}
 
 	//free(dir_arr);	

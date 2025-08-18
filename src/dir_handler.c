@@ -7,8 +7,7 @@
 #include <sys/types.h>
 #include <time.h>
 #include <string.h>
-
-#define PATH_BUFFER_SIZE 1024
+#include <stddef.h>
 
 //This function is a cast for the qsort
 //in the alphabetize function as it expects
@@ -33,22 +32,20 @@ char** alphabetize(char **arr) {
 	return arr;
 }
 
-char* cd(char *path, char *dir) {
-	char new_path[PATH_BUFFER_SIZE];
-
-	if ((strlen(path)) + (strlen(dir)) + 2 > sizeof(new_path)) {
-		return path;	
-	}
+void cd(char *path, char *dir, char *new_path, size_t buffer_size) {
+	new_path[0] = '\0';
 	
-	strncpy(new_path, path, sizeof(new_path));
-	strncat(new_path, dir, sizeof(new_path) - strlen(new_path) - 1);
+	if (strlen(path) + strlen(dir) + 2 > buffer_size) {
+		new_path[0] = '\0';
+		return;	
+	}	
 
-	if (new_path[strlen(new_path)] != '/') {
-		new_path[strlen(new_path)] = '/';
-		new_path[strlen(new_path) + 1] = '\0';	
+	strncat(new_path, path, buffer_size);
+	strncat(new_path, dir, buffer_size - strlen(new_path) - 1);
+
+	if (new_path[strlen(new_path) - 1] != '/') {
+		strncat(new_path, "/", buffer_size - strlen(new_path) - 1);	
 	}
-
-	return new_path;
 }
 
 char** populate_entries(const char *path){
