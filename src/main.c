@@ -48,7 +48,7 @@ void main(int argc, char *argv[]) {
 	
 	while(quit_flag != true) {
 		char **dir_arr = populate_entries(path);	
-		int num_files = 0;	
+		size_t num_files = 0;	
 		
 		alphabetize(dir_arr);	
 		
@@ -63,6 +63,14 @@ void main(int argc, char *argv[]) {
 			
 			mvwprintw(main_win, START_Y + 1 + i, START_X + 1, dir_arr[i]);	
 			wattroff(main_win, A_REVERSE);	
+		}	
+		
+		if (num_files < y_max) {
+			for (int i = num_files + 1; i < y_max; i++) {
+				wmove(main_win, i, START_X + 1);
+				wclrtoeol(main_win);	
+			}	
+			wrefresh(main_win);	
 		}	
 		
 		selection = wgetch(main_win);	
