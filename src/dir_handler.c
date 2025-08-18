@@ -8,6 +8,7 @@
 #include <time.h>
 #include <string.h>
 
+#define PATH_BUFFER_SIZE 1024
 
 //This function is a cast for the qsort
 //in the alphabetize function as it expects
@@ -33,52 +34,21 @@ char** alphabetize(char **arr) {
 }
 
 char* cd(char *path, char *dir) {
-	if (path[strlen(path) - 1] != '/' || dir[strlen(dir) - 1] != '/') {
-		perror("Path/dir formatting erorr");
-		exit(EXIT_FAILURE);	
-	}	
-	
-	if (strcmp(dir, "./") == 0) return path;	
-	
-	else if (strcmp(dir, "../") == 0) {
-		if (strcmp(path, "/") != 0) {
-			unsigned int last_slash_pos = 0;
-			
-			for (unsigned int i = 0; i < strlen(path) - 1; i++) {
-				if (path[i] == '/') {
-					last_slash_pos = i;	
-				}	
-			}	
-			
-			char *new_path = malloc(last_slash_pos + 2);
-			
-			if (new_path == NULL) {
-				perror("Malloc error: cd function(new_path (1))");
-				exit(EXIT_FAILURE);
-			}	
-			
-			strncpy(new_path, path, last_slash_pos + 1);
-			
-			new_path[last_slash_pos + 1] = '\0';
-			
-			return new_path;	
-		}
-		else return path;
-	}	
-	
-	else {	
-		char *new_path = malloc(strlen(path) + strlen(dir) + 1);
-	
-		if (new_path == NULL) {
-			perror("Malloc error: cd function(new_path (2))");
-			exit(EXIT_FAILURE);	
-		}
+	char new_path[PATH_BUFFER_SIZE];
 
-		strcpy(new_path, path);
-		strcat(new_path, dir);	
-		
-		return new_path;
+	if ((strlen(path)) + (strlen(dir)) + 2 > sizeof(new_path)) {
+		return path;	
 	}
+	
+	strncpy(new_path, path, sizeof(new_path));
+	strncat(new_path, dir, sizeof(new_path) - strlen(new_path) - 1);
+
+	if (new_path[strlen(new_path)] != '/') {
+		new_path[strlen(new_path)] = '/';
+		new_path[strlen(new_path) + 1] = '\0';	
+	}
+
+	return new_path;
 }
 
 char** populate_entries(const char *path){
