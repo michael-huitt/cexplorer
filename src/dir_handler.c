@@ -60,6 +60,12 @@ void cd(char *path, char *dir, char *new_path, size_t buffer_size) {
 		return;	
 	}	
 	
+	if (strcmp(dir, ".") == 0) {
+		strncat(new_path, path, buffer_size);
+		
+		return;	
+	}	
+	
 	strncat(new_path, path, buffer_size);
 	strncat(new_path, dir, buffer_size - strlen(new_path) - 1);
 
