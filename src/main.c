@@ -38,8 +38,6 @@ void main(int argc, char *argv[]) {
 	keypad(main_win, true);	
 	refresh();	
 	
-	box(main_win, START_X, START_Y);
-
 	wrefresh(main_win);	
 	
 	bool quit_flag = false;	
@@ -73,6 +71,8 @@ void main(int argc, char *argv[]) {
 			wrefresh(main_win);	
 		}	
 		
+		box(main_win, START_X, START_Y);
+
 		selection = wgetch(main_win);	
 		
 		switch(selection) {
@@ -102,7 +102,6 @@ void main(int argc, char *argv[]) {
 				cd(path, dir_arr[highlighted_entry], new_path, PATH_BUFFER_SIZE);	
 				strncpy(path, new_path, PATH_BUFFER_SIZE - 1);
 				path[PATH_BUFFER_SIZE - 1] = '\0';	
-				mvwprintw(main_win, START_Y, START_X, path);	
 				wrefresh(main_win);	
 				break;
 			
@@ -114,7 +113,5 @@ void main(int argc, char *argv[]) {
 		}	
 	free(dir_arr);	
 	}
-
-	//free(dir_arr);	
 	endwin();	
 }
