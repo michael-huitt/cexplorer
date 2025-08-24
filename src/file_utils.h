@@ -3,6 +3,10 @@
 
 #include <stdbool.h>
 
+//is_dir checks whether or not the given path is a directory.
+//If it is, it will return true, if it isn't or filling
+//the stat struct fails, then false is returned
+
 bool is_dir(const char *file_path);
 
 //is_file simply checks whether a given path to something
