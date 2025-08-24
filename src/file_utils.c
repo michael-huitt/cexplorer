@@ -19,6 +19,22 @@ int rm(const char *file_path) {
 	}
 }
 
+bool is_dir(const char *file_path) {
+	struct stat statbuf;
+
+	if (stat(file_path, &statbuf) != 0) {
+		return false;	
+	}
+	
+	else if (S_ISDIR(statbuf.st_mode) != 0) {
+		return true;	
+	}
+
+	else {
+		return false;	
+	}
+}
+
 bool is_file(const char *file_path) {
 	struct stat statbuf;
 

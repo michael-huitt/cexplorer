@@ -100,8 +100,10 @@ void main(int argc, char *argv[]) {
 			
 			case (10):
 				cd(path, dir_arr[highlighted_entry], new_path, PATH_BUFFER_SIZE);	
-				strncpy(path, new_path, PATH_BUFFER_SIZE - 1);
-				path[PATH_BUFFER_SIZE - 1] = '\0';	
+				if (is_dir(new_path) == true) {	
+					strncpy(path, new_path, PATH_BUFFER_SIZE - 1);
+					path[PATH_BUFFER_SIZE - 1] = '\0';	
+				}	
 				wrefresh(main_win);	
 				break;
 			

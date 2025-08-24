@@ -3,6 +3,8 @@
 
 #include <stdbool.h>
 
+bool is_dir(const char *file_path);
+
 //is_file simply checks whether a given path to something
 //is a file using st_mode macros. Notably, all file types are
 //grouped together: regular files, symbolic links, and pipe files
