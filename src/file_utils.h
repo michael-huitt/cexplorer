@@ -16,7 +16,7 @@ bool is_dir(const char *file_path);
 //that can be performed on these files are roughly the same
 //right now
 
-bool is_file(char *file_path);
+bool is_file(const char *file_path);
 
 //rm attempts to remove a file given within a file path, first it checks
 //if the file exists, if it doesn't, it returns non zero, then it attempts
