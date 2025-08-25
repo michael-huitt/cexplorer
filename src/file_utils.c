@@ -23,7 +23,7 @@ bool is_dir(const char *file_path) {
 	struct stat statbuf;
 
 	if (stat(file_path, &statbuf) != 0) {
-		return false;	
+		return NULL;	
 	}
 	
 	else if (S_ISDIR(statbuf.st_mode) != 0) {
@@ -39,8 +39,7 @@ bool is_file(const char *file_path) {
 	struct stat statbuf;
 
 	if (stat(file_path, &statbuf) != 0) {
-		//perror("stat fail (is_file)");	
-		return false;	
+		return NULL;	
 	}	
 
 	else if (S_ISREG(statbuf.st_mode) != 0 ||
