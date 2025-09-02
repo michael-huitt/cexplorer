@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <sys/stat.h>
+#include "file_utils.h"
 
 int rm(const char *file_path) {
 	struct stat statbuf;
@@ -53,3 +54,4 @@ bool is_file(const char *file_path) {
 		return false;	
 	} 
 }
+
