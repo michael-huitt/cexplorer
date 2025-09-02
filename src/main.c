@@ -30,7 +30,7 @@ void main(int argc, char *argv[]) {
 	int x_max, y_max;
 
 	screen_init();	
-	struct screen_size size = find_max_xy(stdscr);
+	struct win_size size = find_max_xy(stdscr);
 
 	y_max = size.y;
 	x_max = size.x;

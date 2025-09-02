@@ -8,7 +8,7 @@
 
 void screen_init();
 
-struct screen_size { //for find_max_xy to store screen size
+struct win_size { //for find_max_xy to store screen size
 	int x;
 	int y;
 };
@@ -18,6 +18,6 @@ struct screen_size { //for find_max_xy to store screen size
  representing the size of the window in terms of
  rows and columns*/
 
-struct screen_size find_max_xy(WINDOW *window);
+struct win_size find_max_xy(WINDOW *window);
 
 #endif
