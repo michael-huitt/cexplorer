@@ -15,6 +15,9 @@ set(SOURCES
 	
 	src/file_utils.c
 	src/file_utils.h
+
+	src/ui.c
+	src/ui.h
 )
 add_compile_options(-g)
 add_executable(cexplorer ${SOURCES})

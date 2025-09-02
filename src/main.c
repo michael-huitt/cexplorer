@@ -1,5 +1,6 @@
 #include "dir_handler.h"
 #include "file_utils.h"
+#include "ui.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,10 +29,7 @@ void main(int argc, char *argv[]) {
 	char new_path[PATH_BUFFER_SIZE];	
 	int x_max, y_max;
 
-	initscr();
-	cbreak();
-	noecho();
-	curs_set(0);	
+	screen_init();	
 	getmaxyx(stdscr, y_max, x_max);
 
 	WINDOW *main_win = newwin(y_max, x_max, START_X, START_Y);
