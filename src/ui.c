@@ -1,4 +1,6 @@
 #include <ncurses.h>
+#include <menu.h>
+#include "ui.h"
 
 void screen_init() {
 	initscr();
@@ -7,3 +9,9 @@ void screen_init() {
 	curs_set(0);
 }
 
+struct screen_size find_max_xy(WINDOW *window) {
+	struct screen_size size;
+	
+	getmaxyx(window, size.y, size.x);
+	return size;
+}

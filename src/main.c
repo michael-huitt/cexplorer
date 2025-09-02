@@ -30,7 +30,11 @@ void main(int argc, char *argv[]) {
 	int x_max, y_max;
 
 	screen_init();	
-	getmaxyx(stdscr, y_max, x_max);
+	struct screen_size size = find_max_xy(stdscr);
+
+	y_max = size.y;
+	x_max = size.x;
+
 
 	WINDOW *main_win = newwin(y_max, x_max, START_X, START_Y);
 	keypad(main_win, true);	
